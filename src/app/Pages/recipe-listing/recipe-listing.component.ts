@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { HttpService } from '../../Services/http-client.service';
 import { MatTableDataSource } from '@angular/material/table';
-import { IRecipes } from '../../Models/recipes';
+import { IRecipes } from '../../Models/Recipes';
 import { CommonModule } from '@angular/common';
 import { NavComponent } from '../../Components/nav/nav.component';
-import { UpdateRecipeComponent } from '../update-recipe/update-recipe.component';
+
 import { RouterLink } from '@angular/router';
 @Component({
 	selector: 'app-recipe-listing',
@@ -16,7 +16,7 @@ import { RouterLink } from '@angular/router';
 export class RecipeListingComponent {
 	recipes: IRecipes[] = [];
 
-	constructor(private http: HttpService, private uprecipe: UpdateRecipeComponent) {}
+	constructor(private http: HttpService) {}
 
 	ngOnInit(): void {
 		this.getRecipes();
@@ -30,7 +30,7 @@ export class RecipeListingComponent {
 	}
 
 	getIdRecipeHtml(Id: any) {
-		this.uprecipe.GetDataUpdatebyId(Id);
+		this.http.getDatabyIdUpdate(Id);
 
 	}
 }

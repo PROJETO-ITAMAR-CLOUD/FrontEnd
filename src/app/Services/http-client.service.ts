@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IRecipes } from '../Models/recipes';
+import { IRecipes } from '../Models/Recipes';
 import { IRegister } from '../Models/register';
 import { Observable } from 'rxjs';
 
