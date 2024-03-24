@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IRecipes } from '../Models/Recipes';
+import { IProperty } from '../Models/property';
 import { IRegister } from '../Models/register';
 import { Observable } from 'rxjs';
 
@@ -34,7 +34,7 @@ export class HttpService {
 		return this.http.post(`${this.url}/user`, data);
 	}
 
-	postDataRecipe(data: IRecipes) {
+	postDataProperty(data: IProperty) {
 		const authToken = localStorage.getItem('token');
 		if (!authToken) {
 			console.error('Token de autenticação ausente ou inválido.');
@@ -48,27 +48,27 @@ export class HttpService {
 		const headers = new HttpHeaders()
 			.set('Authorization', 'Bearer' + authToken)
 			.set('Content-Type', 'application/json');
-		return this.http.post(`${this.url}/recipe`, data, { headers: headers });
+		return this.http.post(`${this.url}/property`, data, { headers: headers });
 	}
-	getDataRecipe(data: any) {
+	getDataProperty(data: any) {
 		const headers = new HttpHeaders({
 			Authorization: `Bearer ${this.authToken}`
 		});
 
 		// Requisição GET com o token no cabeçalho
-		return this.http.get<any>(`${this.url}/recipe`, { headers, params: { data } });
+		return this.http.get<any>(`${this.url}/property`, { headers, params: { data } });
 	}
 
 	getDatabyIdUpdate(Id: number) {
 		const DataID = Id;
 		return this.http
-			.get(`${this.url}/recipe/${DataID}`, { params: { DataID }, responseType: 'json' })
+			.get(`${this.url}/property/${DataID}`, { params: { DataID }, responseType: 'json' })
 			.subscribe(async (data: any) => {
-				 const response = data.id;
-          console.log('ID', response);
+				const response = data.id;
+				console.log('ID', response);
 
 				if (response === DataID) {
-					localStorage.setItem('RecipeIdLocal', response);
+					localStorage.setItem('PropertyIdLocal', response);
 				}
 			});
 	}

@@ -1,36 +1,35 @@
 import { Component } from '@angular/core';
 import { HttpService } from '../../Services/http-client.service';
 import { MatTableDataSource } from '@angular/material/table';
-import { IRecipes } from '../../Models/Recipes';
+import { IProperty } from '../../Models/property';
 import { CommonModule } from '@angular/common';
 import { NavComponent } from '../../Components/nav/nav.component';
 
 import { RouterLink } from '@angular/router';
 @Component({
-	selector: 'app-recipe-listing',
-	templateUrl: './recipe-listing.component.html',
+	selector: 'app-property-listing',
+	templateUrl: './property-listing.component.html',
 	standalone: true,
-	styleUrls: ['./recipe-listing.component.css'],
+	styleUrls: ['./property-listing.component.css'],
 	imports: [CommonModule, NavComponent]
 })
-export class RecipeListingComponent {
-	recipes: IRecipes[] = [];
+export class PropertyListingComponent {
+	property: IProperty[] = [];
 
 	constructor(private http: HttpService) {}
 
 	ngOnInit(): void {
-		this.getRecipes();
+		this.getProperty();
 	}
 
-	getRecipes() {
-		this.http.getDataRecipe(this.recipes).subscribe((data: any) => {
+	getProperty() {
+		this.http.getDataProperty(this.property).subscribe((data: any) => {
 			console.log('Buscar Receitas', data);
-			this.recipes = data;
+			this.property = data;
 		});
 	}
 
-	getIdRecipeHtml(Id: any) {
+	getIdPropertyHtml(Id: any) {
 		this.http.getDatabyIdUpdate(Id);
-
 	}
 }
