@@ -21,9 +21,9 @@ export class RegisterComponent {
 		];
 		const data = { email: dataEmail['value'], password: dataPass['value'] };
 		this.http.postDataRegister(data);
-		console.log('Registro enviado!!');
 
 		if (data) {
+      console.log('Registro enviado!!');
 		  window.location.href = 'http://localhost:4200/Login';
 		} else {
 		  console.log('Erro ao enviar registro!');
