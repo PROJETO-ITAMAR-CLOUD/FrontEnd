@@ -20,18 +20,20 @@ export class PropertyRegistrationComponent implements OnInit {
 
 	constructor(private http: HttpService) {}
 	ngOnInit(): void {
-		if (localStorage.getItem('token') == null) {
-			window.location.href = 'http://localhost:4200/Login';
-		}
+		// console.log('token', localStorage.getItem('token'));
+		// if (localStorage.getItem('token') == null) {
+		// 	window.location.href = 'http://localhost:4200/Login';
+		// }
+		// localStorage.clear();
 	}
 
 	PostProperty() {
-		const [dataType, dataAddress, dataDescription, dataImageUrl, dataPrice] = [
+		const [dataType, dataAddress, dataDescription, dataPrice, dataImageUrl] = [
 			document.getElementById('Type') as HTMLFormElement,
 			document.getElementById('Address') as HTMLFormElement,
 			document.getElementById('Description') as HTMLFormElement,
-			document.getElementById('ImageUrl') as HTMLFormElement,
-			document.getElementById('Price') as HTMLFormElement
+			document.getElementById('Price') as HTMLFormElement,
+			document.getElementById('ImageUrl') as HTMLFormElement
 		];
 
 		if (
@@ -48,9 +50,11 @@ export class PropertyRegistrationComponent implements OnInit {
 			type: dataType['value'],
 			address: dataAddress['value'],
 			description: dataDescription['value'],
-			imageUrl: dataDescription['value'],
-			price: dataDescription['value']
+			imageUrl: dataImageUrl['value'],
+			price: dataPrice['value']
 		};
+
+		console.log(data);
 		this.http.postDataProperty(data);
 	}
 }
