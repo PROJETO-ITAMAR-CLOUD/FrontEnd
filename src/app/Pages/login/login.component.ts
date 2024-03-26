@@ -4,6 +4,7 @@ import { HttpService } from '../../Services/http-client.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {} from '../../Models/register';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 @Component({
 	selector: 'app-login',
 	standalone: true,
@@ -15,7 +16,7 @@ export class LoginComponent {
 	email: string = '';
 	password: string = '';
 
-	constructor(private http: HttpService) {}
+	constructor(private http: HttpService, private router: Router) {}
 	async getData() {
 		const [dataEmail, dataPass] = [
 			document.getElementById('email') as HTMLFormElement,
@@ -29,8 +30,9 @@ export class LoginComponent {
 		const data: any = { email: dataEmail['value'], password: dataPass['value'] };
 		this.http.postDataLogin(data);
 		const token = localStorage.getItem('token');
+
 		if (token != null) {
-			window.location.href = 'http://localhost:4200/Home';
+      this.router.navigate(['/Home']);
 		}
 	}
 }
