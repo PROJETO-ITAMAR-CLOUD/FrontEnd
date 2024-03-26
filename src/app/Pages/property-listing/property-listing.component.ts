@@ -19,12 +19,16 @@ export class PropertyListingComponent {
 	constructor(private http: HttpService) {}
 
 	ngOnInit(): void {
-		this.getProperty();
+			// if (this.getProperty() == null) {
+			// 	console.log('Nenhuma propriedade encontrada');
+			// }else{
+      //   console.log('Propriedade encontrada');
+      // }
+    this.getProperty();
 	}
 
 	getProperty() {
 		this.http.getDataProperty(this.property).subscribe((data: any) => {
-			console.log('Buscar Receitas', data);
 			this.property = data;
 		});
 	}
