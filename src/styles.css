@@ -2,8 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
- body {
+ /* body {
 	 background-image: url('assets/1380864_160.jpg');
 	 background-size: cover;
 	 background-position: center;
- }
+ } */

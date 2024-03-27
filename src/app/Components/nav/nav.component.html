@@ -1,33 +1,39 @@
-<mat-toolbar class="fixed">
-	<div class="flex ml-3 justify-center items-center space-x-6">
-		<a
-			routerLink="/Home"
-			title="Home"
-			routerLinkActive="active"
-			ariaCurrentWhenActive="page"
-			class="font-bold text-xl mt-2 scale-125 hover:scale-100 hover:text-gray-500"
-			><mat-icon>home</mat-icon></a
+<div class="container py-4 px-2 lg:mx-auto xl:mx-auto">
+	<div class=" ">
+		<nav
+			class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between flex-wrap bg-white shadow-md px-4 py-2"
 		>
-		<a
-			routerLink="/RegistrarPropriedade"
-			routerLinkActive="active"
-			ariaCurrentWhenActive="page"
-			class="font-bold text-xl hover:scale-105 hover:text-gray-500"
-			>Registrar Propriedade</a
-		>
-		<a
-			routerLink="/ListaPropriedade"
-			routerLinkActive="active"
-			ariaCurrentWhenActive="page"
-			class="font-bold text-xl hover:scale-105 hover:text-gray-500"
-			>Lista de Propriedades</a
-		>
-		<a
-			routerLink="/Login"
-			routerLinkActive="active"
-			ariaCurrentWhenActive="page"
-			class="font-bold text-xl hover:scale-105 hover:text-gray-500 "
-			>Login</a
-		>
+			<div class="w-full flex-grow lg:flex items-center lg:w-auto hidden">
+				<div class="text-sm lg:flex-grow mt-2 animated jackinthebox xl:mx-8">
+					<a
+						routerLink="/Home"
+						title="Home"
+						routerLinkActive="active"
+						ariaCurrentWhenActive="page"
+						class="block lg:inline-block text-xl font-bold text-gray-900 sm:hover:border-indigo-400 hover:text-orange-500 mx-2 focus:text-blue-500 p-1 hover:bg-gray-300 sm:hover:bg-transparent rounded-lg"
+					>
+						Home
+					</a>
+
+					<a
+						routerLink="/RegistrarPropriedade"
+						routerLinkActive="active"
+						ariaCurrentWhenActive="page"
+						class="block lg:inline-block text-xl font-bold text-gray-900 sm:hover:border-indigo-400 hover:text-orange-500 mx-2 focus:text-blue-500 p-1 hover:bg-gray-300 sm:hover:bg-transparent rounded-lg"
+						>Registrar Propriedade
+					</a>
+
+					<a
+						routerLink="/ListaPropriedade"
+						routerLinkActive="active"
+						ariaCurrentWhenActive="page"
+						class="block lg:inline-block text-xl font-bold text-gray-900 sm:hover:border-indigo-400 hover:text-orange-500 mx-2 focus:text-blue-500 p-1 hover:bg-gray-300 sm:hover:bg-transparent rounded-lg"
+					>
+						Listar Propriedades
+					</a>
+				</div>
+				<app-botao-register-login></app-botao-register-login>
+			</div>
+		</nav>
 	</div>
-</mat-toolbar>
+</div>
