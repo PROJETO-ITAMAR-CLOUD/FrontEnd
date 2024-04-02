@@ -5,7 +5,7 @@ import { IProperty } from '../../Models/property';
 import { CommonModule } from '@angular/common';
 import { NavComponent } from '../../Components/nav/nav.component';
 
-import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 @Component({
 	selector: 'app-property-listing',
 	templateUrl: './property-listing.component.html',
@@ -16,15 +16,10 @@ import { RouterLink } from '@angular/router';
 export class PropertyListingComponent {
 	property: IProperty[] = [];
 
-	constructor(private http: HttpService) {}
+	constructor(private http: HttpService, private route: Router) {}
 
 	ngOnInit(): void {
-			// if (this.getProperty() == null) {
-			// 	console.log('Nenhuma propriedade encontrada');
-			// }else{
-      //   console.log('Propriedade encontrada');
-      // }
-    this.getProperty();
+		this.getProperty();
 	}
 
 	getProperty() {
@@ -33,7 +28,8 @@ export class PropertyListingComponent {
 		});
 	}
 
-	getIdPropertyHtml(Id: any) {
-		this.http.getDatabyIdUpdate(Id);
+	GetDadosProperytyParaPagina(property: any) {
+		this.route.navigateByUrl('/AtualizarPropriedade', );
+    localStorage.setItem('property', JSON.stringify(property));
 	}
 }

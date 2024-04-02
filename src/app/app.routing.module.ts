@@ -5,6 +5,7 @@ import { PropertyRegistrationComponent } from './Pages/property-registration/pro
 import { PropertyListingComponent } from './Pages/property-listing/property-listing.component';
 import { RegisterComponent } from './Pages/register/register.component';
 import { authGuard } from './Services/auth.guard';
+import { UpdatePropertyPageComponent } from './Pages/update-property-page/update-property-page.component';
 
 export const routes: Routes = [
 	{ path: '', component: HomeComponent, title: 'Home', pathMatch: 'full' },
@@ -23,6 +24,13 @@ export const routes: Routes = [
 		path: 'ListaPropriedade',
 		component: PropertyListingComponent,
 		title: 'Lista de Propriedades',
+		canActivate: [authGuard]
+	},
+
+	{
+		path: 'AtualizarPropriedade',
+		component: UpdatePropertyPageComponent,
+		title: 'Atualizar Propriedade',
 		canActivate: [authGuard]
 	}
 ];

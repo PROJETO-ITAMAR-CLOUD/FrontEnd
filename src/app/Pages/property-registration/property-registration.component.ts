@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { HttpService } from '../../Services/http-client.service';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavComponent } from '../../Components/nav/nav.component';
 
 @Component({
@@ -12,49 +12,27 @@ import { NavComponent } from '../../Components/nav/nav.component';
 	imports: [MatExpansionModule, FormsModule, ReactiveFormsModule, NavComponent]
 })
 export class PropertyRegistrationComponent implements OnInit {
-	type: string = '';
-	address: string = '';
-	description: string = '';
-	imageUrl: string = '';
-	price: string = '';
+	propertyForm = new FormGroup({
+		type: new FormControl(''),
+		address: new FormControl(''),
+		description: new FormControl(''),
+		imageUrl: new FormControl(''),
+		status: new FormControl(''),
+		price: new FormControl(0)
+	});
 
 	constructor(private http: HttpService) {}
-	ngOnInit(): void {
-		// console.log('token', localStorage.getItem('token'));
-		// if (localStorage.getItem('token') == null) {
-		// 	window.location.href = 'http://localhost:4200/Login';
-		// }
-		// localStorage.clear();
-	}
+	ngOnInit(): void {}
 
 	PostProperty() {
-		const [dataType, dataAddress, dataDescription, dataPrice, dataImageUrl] = [
-			document.getElementById('Type') as HTMLFormElement,
-			document.getElementById('Address') as HTMLFormElement,
-			document.getElementById('Description') as HTMLFormElement,
-			document.getElementById('Price') as HTMLFormElement,
-			document.getElementById('ImageUrl') as HTMLFormElement
-		];
+		const data = this.propertyForm.value;
+		console.log(data);
 
-		if (
-			dataType['value'] == '' ||
-			dataAddress['value'] == '' ||
-			dataDescription['value'] == '' ||
-			dataImageUrl['value'] == '' ||
-			dataPrice['value'] == ''
-		) {
+		if (Object.values(data).some((value) => value === '')) {
 			alert('Preencha todos os campos!');
 			return;
 		}
-		const data: any = {
-			type: dataType['value'],
-			address: dataAddress['value'],
-			description: dataDescription['value'],
-			imageUrl: dataImageUrl['value'],
-			price: dataPrice['value']
-		};
 
-		console.log(data);
 		this.http.postDataProperty(data);
 	}
 }

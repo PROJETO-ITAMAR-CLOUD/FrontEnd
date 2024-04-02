@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { IProperty } from '../Models/property';
 import { IRegister } from '../Models/register';
 import { ILogin } from '../Models/login';
+import { Observable } from 'rxjs/internal/Observable';
 @Injectable({
 	providedIn: 'root'
 })
@@ -32,24 +33,29 @@ export class HttpService {
 	postDataRegister(data: IRegister) {
 		// const headers = new HttpHeaders().set('Content-Type', 'application/json');
 		return this.http.post(`${this.url}/user`, data).subscribe(async (data: any) => {
-      const response = data;
-      console.log(response);
-    });
+			const response = data;
+			console.log(response);
+		});
 	}
 
-	postDataProperty(data: IProperty) {
-		async () => {
-			const authToken = localStorage.getItem('token');
-			if (!authToken) {
-				console.error('Token de autenticação ausente ou inválido.');
-				return;
-			}
+	postDataProperty(data: any) {
+		const authToken = localStorage.getItem('token');
+		// const authToken = ""
+		if (!authToken) {
+			console.error('Token de autenticação ausente ou inválido.');
+			return;
+		}
 
-			const headers = new HttpHeaders()
-				.set('Authorization', 'Bearer' + authToken)
-				.set('Content-Type', 'application/json');
-			return await this.http.post(`${this.url}/property`, data, { headers: headers });
-		};
+		const headers = new HttpHeaders()
+			.set('Authorization', `Bearer ${authToken}`)
+			.set('Content-Type', 'application/json');
+
+		return this.http
+			.post(`${this.url}/property`, data, { headers: headers })
+			.subscribe(async (data: any) => {
+				const response = data;
+				console.log(response);
+			});
 	}
 	getDataProperty(data: any) {
 		const headers = new HttpHeaders({
