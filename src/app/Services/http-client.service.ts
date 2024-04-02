@@ -7,7 +7,7 @@ import { ILogin } from '../Models/login';
 	providedIn: 'root'
 })
 export class HttpService {
-	private url = 'http://localhost:4000';
+	private url = '18.228.150.193:4000';
 	private authToken: string = '';
 	// private userIDdata: number = 0;
 	constructor(private http: HttpClient) {}
